@@ -67,5 +67,3 @@ with open('/tmp/orc-to-parquet.py', 'w+') as file:
 
 
 os.system("sudo chmod +x /tmp/orc-to-parquet.py")
-os.system("sudo /usr/lib/spark/bin/spark-submit /tmp/orc-to-parquet.py")
-os.system("sudo rm -f /tmp/orc-to-parquet.py")
