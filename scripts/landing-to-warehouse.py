@@ -30,7 +30,7 @@ s3 = session.client('s3')
 
 #Determine landing bucket and warehouse bucket
 warehouse_bucket_re = 'bigdata-warehousing-(.{2,3})'
-landing_bucket_re = 'big-data-landing'
+landing_bucket_re = 'bigdata-landing-(.{2,3})'
 warehouseBucket = ""
 landingBucket = ""
 
