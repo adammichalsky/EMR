@@ -5,7 +5,17 @@ def get_session(region):
 
 def diff(first, second):
         second = set(second)
-        return [item for item in first if item[:item.find('-')] not in second]
+        return [item for item in first if item not in second]
+
+
+
+def deduplicate_list(list):
+    newList = []
+    for i in list:
+      if i not in newList:
+        newList.append(i.rstrip())
+    return newList
+
 
 def get_s3_tables(**kwargs):
     tables = []
@@ -44,26 +54,25 @@ for obj in s3.list_buckets()['Buckets']:
 #List unique folders in landing bucket
 warehouseList =  get_s3_tables(startAfter="",bucket=warehouseBucket)
 landingList = get_s3_tables(startAfter="",bucket=landingBucket)
-s3List=[]
-for i in warehouseList:
-  if i not in s3List:
-    s3List.append(i)
 
-warehouseList = s3List
+warehouseList = deduplicate_list(warehouseList)
+landingList = deduplicate_list(landingList)
 
 newFolders = diff(landingList,warehouseList)
 
+
 with open('/tmp/orc-to-parquet.py', 'w+') as file:
     file.write("from __future__ import print_function \n" + "import sys \n" + "from pyspark.sql import SparkSession,functions as F \n")
-    file.write("spark = SparkSession.builder.appName(\"initialization\").getOrCreate()\n")
+    file.write("spark = SparkSession.builder.appName(\"initialization\").getOrCreate()\n\n")
     for df in range(0,len(landingList)-1):
         if landingList[df] in newFolders:
             file.write("base = spark.read.format(\"orc\").load(\"s3://" + landingBucket + "/" + landingList[df] + "/\")\n")
             file.write("newBase = base.withColumn(\"ProcessingTime\", F.current_timestamp())\n")
             if landingList[df].find('-') > -1:
-                file.write("newBase.write.format(\"parquet\").mode(\"overwrite\").save(\"s3://" + warehouseBucket + "/" + landingList[df][:landingList[df].find('-')] + "\")\n")
+                file.write("newBase.write.format(\"parquet\").mode(\"overwrite\").save(\"s3://" + warehouseBucket + "/" + landingList[df][:landingList[df].find('-')] + "\")\n\n")
             else:
-                file.write("newBase.write.format(\"parquet\").mode(\"overwrite\").save(\"s3://" + warehouseBucket + "/" + landingList[df] + "\")\n")
+                file.write("newBase.write.format(\"parquet\").mode(\"overwrite\").save(\"s3://" + warehouseBucket + "/" + landingList[df] + "\")\n\n")
+    file.write("spark.stop()")
 
 
 os.system("sudo chmod +x /tmp/orc-to-parquet.py")
