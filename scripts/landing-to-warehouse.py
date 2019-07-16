@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import boto3,re,os
 
 def get_session(region):
