@@ -63,6 +63,7 @@ newFolders = diff(landingList,warehouseList)
 
 
 with open('/tmp/orc-to-parquet.py', 'w+') as file:
+    file.write("#!/usr/bin/python \n")
     file.write("from __future__ import print_function \n" + "import sys \n" + "from pyspark.sql import SparkSession,functions as F \n")
     file.write("spark = SparkSession.builder.appName(\"initialization\").getOrCreate()\n\n")
     for df in range(0,len(landingList)-1):
