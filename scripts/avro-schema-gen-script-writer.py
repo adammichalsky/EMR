@@ -43,7 +43,7 @@ with open('/tmp/spark-avro-schema.py', 'w+') as file:
     file.write("from __future__ import print_function \n" + "import sys \n" + "from pyspark.sql import SparkSession,functions as F \n")
     file.write("spark = SparkSession.builder.appName(\"schemaGen\").getOrCreate()\n\n")
     for df in range(0,len(tables)-1):
-        if tables[df] != 'historicalWeather' OR tables[df] != 'badgePhotos':
+        if tables[df] != 'historicalWeather' or tables[df] != 'badgePhotos':
             file.write("with open('/tmp/"+tables[df] +"_schemas.txt','w') as file:\n\t")
             file.write("base = spark.read.format(\"parquet\").load(\"s3://" + bucket + "/" + tables[df] + "/\").limit(1)\n\t")
             file.write('header = "{\\n \\"namespace\\": \\"batch\\",\\n \\"type\\": \\"record\\",\\n \\"name\\" : \\"' + tables[df]+ '\\",\\n \\"fields\\" : [\\n"\n\t')
