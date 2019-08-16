@@ -51,7 +51,7 @@ with open('/tmp/spark-avro-schema.py', 'w+') as file:
             file.write("schema_list = schema.replace('StructType(List(','') \\\n\t\t")
             file.write(".replace(')))','') \\\n\t\t")
             file.write(".replace('true','') \\\n\t\t")
-        file.write(".replace('false','') \\\n\t\t")
+            file.write(".replace('false','') \\\n\t\t")
         file.write(".replace('StructField(','') \\\n\t\t")
         file.write(".replace('),','') \\\n\t\t")
         file.write(".replace(',ProcessingTime,TimestampType,','') \\\n\t\t")
