@@ -74,6 +74,6 @@ with open('/tmp/spark-avro-schema.py', 'w+') as file:
             file.write('line = line + ",\\n"\n\t\t')
             file.write('else:\n\t\t\t')
             file.write('line = line + "\\n]}"\n\t\t')
-            file.write('avro_schema = header + line\n\t\t')
+            file.write('avro_schema = header + line\n\t')
             file.write('file.write(avro_schema + "\\n\\n")\n')
     file.write("spark.stop()\n\n")
