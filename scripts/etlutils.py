@@ -4,7 +4,8 @@ import sys, ec2utils, json
 def numberOfProcesses(list):
     return len(list['ETL-PROCESSES'])
 
-def numberOfSources(list, processIndex):
+def numberOfSources(list, processIndex):+
+    list = getSourcesList(list, processIndex)
     return len(list['SOURCES'][processIndex])
 
 def getSourceJSONValues(list, keyTag, index, processIndex):

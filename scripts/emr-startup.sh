@@ -9,4 +9,5 @@ sudo wget -P /usr/lib/python2.7/site-packages/ https://raw.githubusercontent.com
 sudo wget -P /usr/lib/python2.7/site-packages/ https://raw.githubusercontent.com/adammichalsky/Data-IaC/master/aws/s3/s3utils.py
 sudo wget -P /usr/lib/python2.7/site-packages/ https://raw.githubusercontent.com/adammichalsky/Data-IaC/master/aws/awsutils.py
 sudo wget -P /usr/lib/python2.7/site-packages/ https://raw.githubusercontent.com/adammichalsky/Data-IaC/master/aws/ec2/ec2utils.py
+sudo wget -P /usr/lib/python2.7/site-packages/ https://raw.githubusercontent.com/adammichalsky/EMR/master/scripts/etlutils.py
 sudo chmod +x /custom_scripts/*.py
