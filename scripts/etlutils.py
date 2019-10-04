@@ -22,11 +22,11 @@ def getSourceJSONValues(list, keyTag, index, processIndex):
 def getDestinationJSONValues(list, keyTag, processIndex):
     list = getDestinationList(list, processIndex)
     switcher ={
-        "DESTINATION_FOLDER_NAME": list[int(processIndex)]['DESTINATION_FOLDER_NAME'],
-        "DESTINATION_FORMAT":  list[int(processIndex)]['DESTINATION_FORMAT'],
-        "DESTINATION_BUCKET_NAME": list[int(processIndex)]['DESTINATION_BUCKET_NAME'],
-        "DESTINATION_PREFIX": list[int(processIndex)]['DESTINATION_PREFIX'],
-        "DROP_AND_RELOAD" : list[int(processIndex)]['DROP_AND_RELOAD']
+        "DESTINATION_FOLDER_NAME": list[0]['DESTINATION_FOLDER_NAME'],
+        "DESTINATION_FORMAT":  list[0]['DESTINATION_FORMAT'],
+        "DESTINATION_BUCKET_NAME": list[0]['DESTINATION_BUCKET_NAME'],
+        "DESTINATION_PREFIX": list[0]['DESTINATION_PREFIX'],
+        "DROP_AND_RELOAD" : list[0]['DROP_AND_RELOAD']
               }
     return switcher.get(keyTag, "Invalid key name.")
 
