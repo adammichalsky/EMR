@@ -6,7 +6,7 @@ def numberOfProcesses(list):
 
 def numberOfSources(list, processIndex):
     list = getSourcesList(list, processIndex)
-    return len(list['SOURCES'])
+    return len(list)
 
 def getSourceJSONValues(list, keyTag, index, processIndex):
     list = getSourcesList(list, processIndex)
