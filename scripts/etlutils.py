@@ -8,7 +8,7 @@ def numberOfSources(list, processIndex):
     list = getSourcesList(list, processIndex)
     return len(list)
 
-def getSourceJSONValues(list, keyTag, index, processIndex):
+def getSourceJSONValues(list, keyTag, processIndex, index):
     list = getSourcesList(list, processIndex)
     switcher ={
         "SOURCE_BUCKET_NAME": list[int(index)]['SOURCE_BUCKET_NAME'],
