@@ -6,46 +6,46 @@ def numberOfProcesses(list):
 
 def numberOfSources(list, processIndex):
     list = getSourcesList(list, processIndex)
-    return len(list['SOURCES'][processIndex])
+    return len(list['SOURCES'])
 
 def getSourceJSONValues(list, keyTag, index, processIndex):
     list = getSourcesList(list, processIndex)
     switcher ={
-        "SOURCE_BUCKET_NAME": list[index]['SOURCE_BUCKET_NAME'],
-        "SOURCE_PREFIX":  list[index]['SOURCE_PREFIX'],
-        "SOURCE_FOLDER_NAME": list[index]['SOURCE_FOLDER_NAME'],
-        "SPARK_VIEW_NAME": list[index]['SPARK_VIEW_NAME'],
-        "SOURCE_FORMAT": list[index]['FORMAT']
+        "SOURCE_BUCKET_NAME": list[int(index)]['SOURCE_BUCKET_NAME'],
+        "SOURCE_PREFIX":  list[int(index)]['SOURCE_PREFIX'],
+        "SOURCE_FOLDER_NAME": list[int(index)]['SOURCE_FOLDER_NAME'],
+        "SPARK_VIEW_NAME": list[int(index)]['SPARK_VIEW_NAME'],
+        "SOURCE_FORMAT": list[int(index)]['FORMAT']
               }
     return switcher.get(keyTag, "Invalid key name.")
 
 def getDestinationJSONValues(list, keyTag, processIndex):
     list = getDestinationList(list, processIndex)
     switcher ={
-        "DESTINATION_FOLDER_NAME": list[index]['DESTINATION_FOLDER_NAME'],
-        "DESTINATION_FORMAT":  list[index]['DESTINATION_FORMAT'],
-        "DESTINATION_BUCKET_NAME": list[index]['DESTINATION_BUCKET_NAME'],
-        "DESTINATION_PREFIX": list[index]['DESTINATION_PREFIX'],
-        "DROP_AND_RELOAD" : list[index]['DROP_AND_RELOAD']
+        "DESTINATION_FOLDER_NAME": list[int(index)]['DESTINATION_FOLDER_NAME'],
+        "DESTINATION_FORMAT":  list[int(index)]['DESTINATION_FORMAT'],
+        "DESTINATION_BUCKET_NAME": list[int(index)]['DESTINATION_BUCKET_NAME'],
+        "DESTINATION_PREFIX": list[int(index)]['DESTINATION_PREFIX'],
+        "DROP_AND_RELOAD" : list[int(index)]['DROP_AND_RELOAD']
               }
     return switcher.get(keyTag, "Invalid key name.")
 
 def getProcessJSONValues(list, keyTag, processIndex):
     list = getProcessesList(list)
     switcher ={
-        "SQL" : list[index]['SQL'],
-        "PRIORITY" : list[index]['PRIORITY'],
-        "REGISTER_AS_VIEW" : list[index]['REGISTER_AS_VIEW'],
-        "PERSISTENT": list[index]['PERSISTENT']
+        "SQL" : list[int(index)]['SQL'],
+        "PRIORITY" : list[int(index)]['PRIORITY'],
+        "REGISTER_AS_VIEW" : list[int(index)]['REGISTER_AS_VIEW'],
+        "PERSISTENT": list[int(index)]['PERSISTENT']
               }
     return switcher.get(keyTag, "Invalid key name.")
 
 
 def getSourcesList(list, processIndex):
-    return getProcessesList(list)[processIndex]['SOURCES']
+    return getProcessesList(list)[int(processIndex)]['SOURCES']
 
 def getDestinationList(list, processIndex):
-    return getProcessesList(list)[processIndex]['DESTINATION_SETTINGS']
+    return getProcessesList(list)[int(processIndex)]['DESTINATION_SETTINGS']
 
 def getProcessesList(list):
     return list['ETL-PROCESSES']
