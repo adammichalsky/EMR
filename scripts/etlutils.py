@@ -54,6 +54,6 @@ def getProcessesList(list):
 def getProcessIndexByPriority(list, priority):
     index = -1
     for i in range(0, numberOfProcesses(list)):
-        if(str(priority)==str(getProcessJSONValues(list,'PRIORITY',i)))):
+        if(str(priority)==str(getProcessJSONValues(list,'PRIORITY',i))):
             index = i
     return index
