@@ -22,21 +22,22 @@ def getSourceJSONValues(list, keyTag, index, processIndex):
 def getDestinationJSONValues(list, keyTag, processIndex):
     list = getDestinationList(list, processIndex)
     switcher ={
-        "DESTINATION_FOLDER_NAME": list[int(index)]['DESTINATION_FOLDER_NAME'],
-        "DESTINATION_FORMAT":  list[int(index)]['DESTINATION_FORMAT'],
-        "DESTINATION_BUCKET_NAME": list[int(index)]['DESTINATION_BUCKET_NAME'],
-        "DESTINATION_PREFIX": list[int(index)]['DESTINATION_PREFIX'],
-        "DROP_AND_RELOAD" : list[int(index)]['DROP_AND_RELOAD']
+        "DESTINATION_FOLDER_NAME": list[int(processIndex)]['DESTINATION_FOLDER_NAME'],
+        "DESTINATION_FORMAT":  list[int(processIndex)]['DESTINATION_FORMAT'],
+        "DESTINATION_BUCKET_NAME": list[int(processIndex)]['DESTINATION_BUCKET_NAME'],
+        "DESTINATION_PREFIX": list[int(processIndex)]['DESTINATION_PREFIX'],
+        "DROP_AND_RELOAD" : list[int(processIndex)]['DROP_AND_RELOAD']
               }
     return switcher.get(keyTag, "Invalid key name.")
 
 def getProcessJSONValues(list, keyTag, processIndex):
     list = getProcessesList(list)
     switcher ={
-        "SQL" : list[int(index)]['SQL'],
-        "PRIORITY" : list[int(index)]['PRIORITY'],
-        "REGISTER_AS_VIEW" : list[int(index)]['REGISTER_AS_VIEW'],
-        "PERSISTENT": list[int(index)]['PERSISTENT']
+        "SPARK_VIEW_NAME" : list[int(processIndex)]['SPARK_VIEW_NAME'],
+        "SQL" : list[int(processIndex)]['SQL'],
+        "PRIORITY" : list[int(processIndex)]['PRIORITY'],
+        "REGISTER_AS_VIEW" : list[int(processIndex)]['REGISTER_AS_VIEW'],
+        "PERSISTENT": list[int(processIndex)]['PERSISTENT']
               }
     return switcher.get(keyTag, "Invalid key name.")
 
